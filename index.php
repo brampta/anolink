@@ -1,105 +1,18 @@
 <?php
 $secondstowait=2;
-
-
 $secret_fast='yarasphat';
 
-$counter='
-<!-- Start of StatCounter Code -->
-<script type="text/javascript">
-var sc_project=4900943; 
-var sc_invisible=1; 
-var sc_partition=57; 
-var sc_click_stat=1; 
-var sc_security="e5422f17"; 
-</script>
+include('conf.php');
 
-<script type="text/javascript"
-src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
-class="statcounter"><a title="counter on blogger"
-href="http://www.statcounter.com/blogger/"
-target="_blank"><img class="statcounter"
-src="http://c.statcounter.com/4900943/0/e5422f17/1/"
-alt="counter on blogger" ></a></div></noscript>
-<!-- End of StatCounter Code -->';
-
-
-// $counter.='<script type="text/javascript">
-// var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-// document.write(unescape("%3Cscript src='."'".'" + gaJsHost + "google-analytics.com/ga.js'."'".' type='."'".'text/javascript'."'".'%3E%3C/script%3E"));
-// </script>
-// <script type="text/javascript">
-// try {
-// var pageTracker = _gat._getTracker("UA-6961072-7");
-// pageTracker._trackPageview();
-// } catch(err) {}</script>
-// ';
-
-
-
-$googleleaderboard='<script type="text/javascript"><!--
-google_ad_client = "pub-3427126291022263";
-/* 728x90, date de création 30/07/09 */
-google_ad_slot = "9705563951";
-google_ad_width = 728;
-google_ad_height = 90;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>';
-
-$cpgoogloleaderboard='<!-- BEGIN STANDARD TAG - 728 x 90 - googlonymous.com: Run-of-site - DO NOT MODIFY -->
-<IFRAME FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=728 HEIGHT=90 SRC="http://adserving.cpxinteractive.com/st?ad_type=iframe&ad_size=728x90&section=239063"></IFRAME>
-<!-- END TAG -->';
-
-
-$googlesquare='<script type="text/javascript"><!--
-google_ad_client = "pub-3427126291022263";
-/* 336x280, date de création 11/07/09 */
-google_ad_slot = "1781493461";
-google_ad_width = 336;
-google_ad_height = 280;
-//-->
-</script>
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>';
-
-$cpsquare='<!-- BEGIN STANDARD TAG - 300 x 250 - googlonymous.com: Run-of-site - DO NOT MODIFY -->
-<IFRAME FRAMEBORDER=0 MARGINWIDTH=0 MARGINHEIGHT=0 SCROLLING=NO WIDTH=300 HEIGHT=250 SRC="http://adserving.cpxinteractive.com/st?ad_type=iframe&ad_size=300x250&section=239063"></IFRAME>
-<!-- END TAG -->';
-
-$cpxpopup='<!-- BEGIN STANDARD TAG - popup or popunder - googlonymous.com: Run-of-site - DO NOT MODIFY -->
-<SCRIPT TYPE="text/javascript" SRC="http://adserving.cpxinteractive.com/st?ad_type=pop&ad_size=0x0&section=239063&banned_pop_types=28&pop_times=1&pop_frequency=0&pop_nofreqcap=1"></SCRIPT>
-<!-- END TAG -->';
-
-
-$gsquares='<div style="width:100%;"><table style="width:100%;"><tr><td style="width:50%;text-align:right;">'.$googlesquare.'</td><td style="width:50%;text-align:left;">'.$googlesquare.'</td></tr></table></div>';
-$cpsquares='<div style="width:100%;"><table style="width:100%;"><tr><td style="width:50%;text-align:right;">'.$cpsquare.'</td><td style="width:50%;text-align:left;">'.$cpsquare.'</td></tr></table></div>';
-
-
-
-$google_bottom='<center><div>'.$googleleaderboard.'</div><div>'.$cpgoogloleaderboard.'</div></center>';
-
-$adbrite_fullkit='<!-- Begin: AdBrite, Generated: 2009-08-01 0:42:08  -->
-<script type="text/javascript">
-var AdBrite_Title_Color = "0000FF";
-var AdBrite_Text_Color = "000000";
-var AdBrite_Background_Color = "FFFFFF";
-var AdBrite_Border_Color = "CCCCCC";
-var AdBrite_URL_Color = "008000";
-try{var AdBrite_Iframe=window.top!=window.self?2:1;var AdBrite_Referrer=document.referrer==""?document.location:document.referrer;AdBrite_Referrer=encodeURIComponent(AdBrite_Referrer);}catch(e){var AdBrite_Iframe="";var AdBrite_Referrer="";}
-</script>
-<script type="text/javascript">document.write(String.fromCharCode(60,83,67,82,73,80,84));document.write('."'".' src="http://ads.adbrite.com/mb/text_group.php?sid=1284281&zs=3330305f323530&ifr='."'".'+AdBrite_Iframe+'."'".'&ref='."'".'+AdBrite_Referrer+'."'".'" type="text/javascript">'."'".');document.write(String.fromCharCode(60,47,83,67,82,73,80,84,62));</script>
-<div><a target="_top" href="http://www.adbrite.com/mb/commerce/purchase_form.php?opid=1284281&afsid=1" style="font-weight:bold;font-family:Arial;font-size:13px;">Your Ad Here</a></div>
-<!-- End: AdBrite -->';
-
-$adbritesquares='<div style="width:100%;"><table style="width:100%;"><tr><td style="width:50%;text-align:right;">'.$adbrite_fullkit.'</td><td style="width:50%;text-align:left;">'.$adbrite_fullkit.'</td></tr></table></div>';
-
-
-if(isset($_GET['link']) && $_GET['link']!='')
+if(
+	(isset($_GET['link']) && $_GET['link']!='')
+		||
+	(isset($_GET['link64']) && $_GET['link64']!='')
+)
 {
+	if(isset($_GET['link64'])){
+		$_GET['link']=base64_decode($_GET['link64']);
+	}
 	$goto_link=$_GET['link'];
 	echo '<html>
 	<head>
@@ -173,9 +86,16 @@ if(isset($_GET['link']) && $_GET['link']!='')
 		font-family: \'Sanchez\', Helvetica, Arial, sans-serif;
 	}
 	</style>
+	';
+	include('head.php');
+	echo '
 	</head>
 	<body>
         <div style="padding:10px;">
+        
+        
+        
+        
 	<center>
 	<h1>anolink.com</h1>
 	<h4>is covering up your tracks</h4>
@@ -197,8 +117,11 @@ if(isset($_GET['link']) && $_GET['link']!='')
 	<script type="text/javascript">
 	decrease_time();
 	</script>
-	'.$counter.'
 	</center>
+	
+	
+	
+	
         </div>
 	</body>
 	</html>';
@@ -222,14 +145,28 @@ else
 		font-family: \'Sanchez\', Helvetica, Arial, sans-serif;
 	}
 	</style>
+	';
+	include('head.php');
+	echo '
 	</head>
 	<body style="padding:0px;margin:0px;overflow:auto;">
         <div style="padding:10px;">
 
 
+
+<h1>Create hidden links</h1>
+<form>
+<div><label for="link">link:</label> <input type="text" id="link" name="link"> <input type="button" value="create" onclick="anonlink()"></div>
+</form>
+<div id="results"></div>
+<script src="anolink.js"></script>
+';
+
+
+	/*
+echo '
 	<center>
-	
-	
+
 	<table><tr><td style="width:800px;">
 	
 	<h1>Easily Create Anonymous Links with the Anolink Dereferer!</h1>
@@ -241,9 +178,6 @@ else
 
 	<br />
 	<p>Whats the point of that? Who will be anonymous in that? It is the website that offers the link that will be hidden from the site that is beeing linked to. Instead of appearing to be refered from your site, the visitor will appear to be refered from anolink.com. The privacy of the visitor is also protected by this mechanism because this way the site that is beeing linked to cannot see where the visitor comes from.</p>
-	
-
-
 
 <br />
 <div>see also:</div>
@@ -258,21 +192,15 @@ link:
 <div><b><a href="http://anolink.com/htmlize?html=%3Cscript+type%3D%22text%2Fjavascript%22%3Ealert%28%27bip%21%27%29%3B%3C%2Fscript%3E%0D%0A%3Cp+style%3D%22background-color%3Ared%3B%22%3Etest%3C%2Fp%3E%0D%0A" target="_blank">http://anolink.com/htmlize?html=<span style="color:red;">%3Cscript+type%3D%22text%2Fjavascript%22%3Ealert%28%27bip%21%27%29%3B%3C%2Fscript%3E%0D%0A%3Cp+style%3D%22background-color%3Ared%3B%22%3Etest%3C%2Fp%3E%0D%0A</span></a></b></div>
 <br />
 
-
 </td></tr></table>
 
-
-
-<br />
-<div style="font-size:12px;">*Powered by <a href="http://intercode.ca/">Intercode.ca</a></div>
-
-'.$counter.'
-
-
-
-
-
 	</center>
+	';
+	*/
+	
+	
+	
+	echo '
         </div>
 	</body>
 	</html>';
